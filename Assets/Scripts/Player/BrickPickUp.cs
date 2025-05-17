@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BrickPickUp : MonoBehaviour
 {
@@ -20,15 +21,18 @@ public class BrickPickUp : MonoBehaviour
     private void Update()
     {
         currentTime -= Time.deltaTime;
+ 
         Debug.Log(currentTime);
 
         if (currentTime <= 0)
         {
-            Debug.Log("GameOver");
+            GameOverMessage("Game Over");
+            LoadNextScene();
         }
         else if (brickCount == bricks.Count)
         {
-            Debug.Log("Success");
+            GameOverMessage("Success");
+            LoadNextScene();
         }
     }
     private void OnCollisionEnter(Collision other)
@@ -41,5 +45,31 @@ public class BrickPickUp : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+    }
+
+    private float TimeInGame()
+    {
+        float timeInGame = Time.deltaTime;
+
+        return timeInGame;
+    }
+
+    private string GameOverMessage(string message)
+    {
+        if(message == "Success")
+        {
+            return "Success";
+        }
+        else if (message == "Game Over")
+        {
+            return "Game Over";
+        }
+        return message;
+    }
+
+    public void LoadNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }

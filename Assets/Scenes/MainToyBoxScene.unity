@@ -684,8 +684,6 @@ GameObject:
   - component: {fileID: 746295487}
   - component: {fileID: 746295488}
   - component: {fileID: 746295490}
-  - component: {fileID: 746295491}
-  - component: {fileID: 746295492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -800,8 +798,8 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 746295488}
   <CharacterController>k__BackingField: {fileID: 746295489}
   <Animator>k__BackingField: {fileID: 0}
-  <FreeLookMovementSpeed>k__BackingField: 10
-  <RotationDamping>k__BackingField: 6
+  <FreeLookMovementSpeed>k__BackingField: 8
+  <RotationDamping>k__BackingField: 10
 --- !u!114 &746295488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,33 +846,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 746295482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53658f8da8641fb4aa603533c14ec1e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f095023335b73a48b23c3c89bf5e46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &746295491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746295482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4004c02bf2640264e9698500f318d678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &746295492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746295482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471affa53d411434a8fdb017b77ce11f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bricks:
+  - {fileID: 1561601961}
+  - {fileID: 1470419986}
+  - {fileID: 674664394}
+  - {fileID: 777173903}
+  startTime: 30
 --- !u!1 &777173903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,8 +998,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777173903}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.33, y: 2, z: 4.84}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.32999992, y: 2, z: 4.84}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
