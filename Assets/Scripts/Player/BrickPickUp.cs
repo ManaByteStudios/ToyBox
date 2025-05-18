@@ -4,14 +4,32 @@ using UnityEngine.SceneManagement;
 
 public class BrickPickUp : MonoBehaviour
 {
+    public static BrickPickUp Instance;
+
     [SerializeField] List<GameObject> bricks = new List<GameObject>();
 
     [SerializeField] private float startTime = 30f;
 
-    int brickCount = 0;
-    
+    public int brickCount = 0;
+
     float currentTime;
     float addedTime = 5f;
+
+    public bool isSuccessful;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("Destroying extra BrickPickUp instance.");
+            Destroy(gameObject); // Prevents multiple instances
+        }
+    }
 
     private void Start()
     {
@@ -21,17 +39,15 @@ public class BrickPickUp : MonoBehaviour
     private void Update()
     {
         currentTime -= Time.deltaTime;
- 
-        Debug.Log(currentTime);
 
         if (currentTime <= 0)
         {
-            GameOverMessage("Game Over");
+            isSuccessful = false;
             LoadNextScene();
         }
         else if (brickCount == bricks.Count)
         {
-            GameOverMessage("Success");
+            isSuccessful = true;
             LoadNextScene();
         }
     }
@@ -47,14 +63,16 @@ public class BrickPickUp : MonoBehaviour
         }
     }
 
-    private float TimeInGame()
+
+    public float TimeInGame()
     {
-        float timeInGame = Time.deltaTime;
+        float timeInGame = 0;
+        timeInGame += Time.time;
 
         return timeInGame;
     }
 
-    private string GameOverMessage(string message)
+    public static string GameOverMessage(string message)
     {
         if(message == "Success")
         {
@@ -69,7 +87,8 @@ public class BrickPickUp : MonoBehaviour
 
     public void LoadNextScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        Debug.Log("Attempting to load GameOverScreen...");
+        SceneManager.LoadScene("GameOverScreen");
+        Debug.Log("Scene load called successfully.");
     }
 }

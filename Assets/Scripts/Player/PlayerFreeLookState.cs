@@ -9,14 +9,11 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
-    public override void Enter()
-    {
+    public override void Enter() { }
 
-    }
     public override void Tick(float deltaTime)
     {
         Vector3 movement = CalculateMovement();
-
         stateMachine.CharacterController.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
@@ -26,14 +23,10 @@ public class PlayerFreeLookState : PlayerBaseState
         }
 
         //stateMachine.Animator.SetFloat(freeLookSpeedHash, 1, animatorDampTime, deltaTime);
-
         FaceMovementDirection(movement, deltaTime);
     }
 
-    public override void Exit()
-    {
-
-    }
+    public override void Exit() { }
 
     private Vector3 CalculateMovement()
     {
@@ -42,7 +35,6 @@ public class PlayerFreeLookState : PlayerBaseState
 
         forward.y = 0f;
         right.y = 0f;
-
         forward.Normalize();
         right.Normalize();
 
@@ -54,6 +46,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.transform.rotation = Quaternion.Lerp(
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
-            deltaTime * stateMachine.RotationDamping);
+            deltaTime * stateMachine.RotationDamping
+        );
     }
 }
