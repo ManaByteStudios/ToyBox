@@ -5,6 +5,7 @@ public class BricksCollectedText : MonoBehaviour
 {
     [SerializeField] private TMP_Text bricksCollected;
 
+
     void Start()
     {
         if (bricksCollected == null)

@@ -9,6 +9,7 @@ public class PlayGame : MonoBehaviour
     [SerializeField] List<RotateBrick> rotateBrick = new List<RotateBrick>();
     [SerializeField] GameObject player;
     [SerializeField] GameObject titleScreen;
+    [SerializeField] GameObject onScreenCountDown;
     void Awake()
     {
         DisableRotateBrick();
@@ -23,6 +24,8 @@ public class PlayGame : MonoBehaviour
         }
         player.SetActive(true);
         titleScreen.SetActive(false);
+        onScreenCountDown.SetActive(true);
+        
     }
 
     public void DisableRotateBrick()

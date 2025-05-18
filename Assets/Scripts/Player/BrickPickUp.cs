@@ -8,11 +8,13 @@ public class BrickPickUp : MonoBehaviour
 
     [SerializeField] List<GameObject> bricks = new List<GameObject>();
     [SerializeField] GameObject endGameScreen;
+    [SerializeField] GameObject onScreenCountDown;
     [SerializeField] private float startTime = 30f;
 
     public int brickCount = 0;
 
-    float currentTime;
+    public float currentTime;
+
     float addedTime = 5f;
 
     public bool isSuccessful;
@@ -43,17 +45,18 @@ public class BrickPickUp : MonoBehaviour
         if (currentTime <= 0)
         {
             isSuccessful = false;
-
             EnableEndGameScene();
+            DisableOnScreenCountDown();
             PlayGame.Instance.DisableRotateBrick();
-            PlayGame.Instance.DisablePlayerGameObject();
+            PlayGame.Instance.DisablePlayerGameObject();            
         }
         else if (brickCount == bricks.Count)
         {
             isSuccessful = true;
             EnableEndGameScene();
+            DisableOnScreenCountDown();
             PlayGame.Instance.DisableRotateBrick();
-            PlayGame.Instance.DisablePlayerGameObject();
+            PlayGame.Instance.DisablePlayerGameObject();            
         }
     }
     private void OnCollisionEnter(Collision other)
@@ -71,6 +74,11 @@ public class BrickPickUp : MonoBehaviour
     public void EnableEndGameScene()
     {
         endGameScreen.SetActive(true);
+    }
+
+    private void DisableOnScreenCountDown()
+    {
+        onScreenCountDown.SetActive(false);
     }
 
     public float TimeInGame()

@@ -4,7 +4,7 @@ using TMPro;
 public class SuccessText : MonoBehaviour
 {
     [SerializeField] private TMP_Text titleText;
-        private void Start()
+    private void Start()
     {
         if (titleText == null)
         {
