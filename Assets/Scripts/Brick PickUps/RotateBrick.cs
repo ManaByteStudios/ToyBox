@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class RotateBrick : MonoBehaviour
 {
+    public static RotateBrick Instance;
+
     [SerializeField] private float rotationSpeed = 2f;
     void Update()
     {
