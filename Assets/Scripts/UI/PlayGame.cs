@@ -1,21 +1,18 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayGame : MonoBehaviour
 {
+    public static PlayGame Instance;
+
     [SerializeField] List<RotateBrick> rotateBrick = new List<RotateBrick>();
     [SerializeField] GameObject player;
     [SerializeField] GameObject titleScreen;
     void Awake()
     {
-        foreach (RotateBrick brick in rotateBrick)
-        {
-            brick.enabled = false; 
-        }
-
-        player.SetActive(false);
+        DisableRotateBrick();
+        DisablePlayerGameObject();
     }
 
     public void EnableScripts()
@@ -27,4 +24,23 @@ public class PlayGame : MonoBehaviour
         player.SetActive(true);
         titleScreen.SetActive(false);
     }
+
+    public void DisableRotateBrick()
+    {
+        foreach (RotateBrick brick in rotateBrick)
+        {
+            brick.enabled = false;
+        }
+    }
+
+    public void DisablePlayerGameObject()
+    {
+        player.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }

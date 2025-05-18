@@ -7,7 +7,7 @@ public class BrickPickUp : MonoBehaviour
     public static BrickPickUp Instance;
 
     [SerializeField] List<GameObject> bricks = new List<GameObject>();
-
+    [SerializeField] GameObject endGameScreen;
     [SerializeField] private float startTime = 30f;
 
     public int brickCount = 0;
@@ -43,12 +43,17 @@ public class BrickPickUp : MonoBehaviour
         if (currentTime <= 0)
         {
             isSuccessful = false;
-            LoadNextScene();
+
+            EnableEndGameScene();
+            PlayGame.Instance.DisableRotateBrick();
+            PlayGame.Instance.DisablePlayerGameObject();
         }
         else if (brickCount == bricks.Count)
         {
             isSuccessful = true;
-            LoadNextScene();
+            EnableEndGameScene();
+            PlayGame.Instance.DisableRotateBrick();
+            PlayGame.Instance.DisablePlayerGameObject();
         }
     }
     private void OnCollisionEnter(Collision other)
@@ -63,6 +68,10 @@ public class BrickPickUp : MonoBehaviour
         }
     }
 
+    public void EnableEndGameScene()
+    {
+        endGameScreen.SetActive(true);
+    }
 
     public float TimeInGame()
     {
@@ -83,12 +92,5 @@ public class BrickPickUp : MonoBehaviour
             return "Game Over";
         }
         return message;
-    }
-
-    public void LoadNextScene()
-    {
-        Debug.Log("Attempting to load GameOverScreen...");
-        SceneManager.LoadScene("GameOverScreen");
-        Debug.Log("Scene load called successfully.");
     }
 }
