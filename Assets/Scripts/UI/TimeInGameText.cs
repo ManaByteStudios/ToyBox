@@ -32,6 +32,6 @@ public class TotalGameTime : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeInGame / 60); // Convert total time to minutes
         int seconds = Mathf.FloorToInt(timeInGame % 60); // Get remaining seconds
 
-        return string.Format("{0:00}:{1:00}", minutes, seconds); // Format as MM:SS
+        return string.Format("Time In Game: {0:00}:{1:00}", minutes, seconds); // Format as MM:SS
     }
 }

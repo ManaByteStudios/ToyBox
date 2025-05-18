@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BrickPickUp
   - UI_Button
+  - PlayerEyes
+  - Toybox
   layers:
   - Default
   - TransparentFX
