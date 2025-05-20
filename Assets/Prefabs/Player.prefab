@@ -4064,6 +4064,7 @@ GameObject:
   - component: {fileID: 1861974138430531766}
   - component: {fileID: 3886248786797136588}
   - component: {fileID: 5538384157735326265}
+  - component: {fileID: 3364808304463147254}
   - component: {fileID: 9190972397590745572}
   - component: {fileID: 899517719217080309}
   - component: {fileID: 1381271763368750825}
@@ -4157,8 +4158,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.58
-  m_Radius: 0.5
+  m_Height: 0.98
+  m_Radius: 0.11
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -4186,6 +4187,14 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!81 &3364808304463147254
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910589177382218104}
+  m_Enabled: 1
 --- !u!114 &9190972397590745572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4228,9 +4237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bricks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   endGameScreen: {fileID: 0}
   onScreenCountDown: {fileID: 0}
