@@ -11,14 +11,15 @@ public class BrickPickUp : MonoBehaviour
     [SerializeField] GameObject onScreenCountDown;
     [SerializeField] GameObject bricksCollectedText;
     [SerializeField] private float startTime = 30f;
+    [SerializeField] AudioClip pickedUpSFX;
 
     public int brickCount = 0;
-
     public float currentTime;
-
     float addedTime = 5f;
-
     public bool isSuccessful;
+
+    AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class BrickPickUp : MonoBehaviour
     private void Start()
     {
         currentTime = startTime;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -46,22 +48,25 @@ public class BrickPickUp : MonoBehaviour
         if (currentTime <= 0)
         {
             isSuccessful = false;
-            EnableEndGameScene();
-            DisableOnScreenCountDown();
-            DisableBrickCollectedTxt();
-            PlayGame.Instance.DisableRotateBrick();
-            PlayGame.Instance.DisablePlayerGameObject();            
+            Invoke("EndGameProcesses", 1f);
         }
         else if (brickCount == bricks.Count)
         {
             isSuccessful = true;
-            EnableEndGameScene();
-            DisableOnScreenCountDown();
-            DisableBrickCollectedTxt();
-            PlayGame.Instance.DisableRotateBrick();
-            PlayGame.Instance.DisablePlayerGameObject();            
+            Invoke("EndGameProcesses", 1f);                     
         }
     }
+    void EndGameProcesses()
+    {
+        Destroy(this.gameObject);
+        EnableEndGameScene();
+        DisableOnScreenCountDown();
+        DisableBrickCollectedTxt();
+        PlayGame.Instance.DisableRotateBrick();
+        PlayGame.Instance.DisablePlayerGameObject();
+
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "BrickPickUp")
@@ -69,6 +74,8 @@ public class BrickPickUp : MonoBehaviour
             brickCount++;
 
             currentTime += addedTime;
+
+            audioSource.PlayOneShot(pickedUpSFX);
 
             Destroy(other.gameObject);
         }
@@ -91,8 +98,19 @@ public class BrickPickUp : MonoBehaviour
 
     public float TimeInGame()
     {
-        float timeInGame = 0;
+        float timeInGame = 0f;
         timeInGame += Time.time;
+
+        if (currentTime <= 0f)
+        {
+            timeInGame = 0f;
+            return timeInGame;
+        }
+        else if (brickCount == bricks.Count)
+        {
+            timeInGame = currentTime;
+            return timeInGame;
+        }
 
         return timeInGame;
     }

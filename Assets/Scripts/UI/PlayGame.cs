@@ -11,10 +11,19 @@ public class PlayGame : MonoBehaviour
     [SerializeField] GameObject titleScreen;
     [SerializeField] GameObject onScreenCountDown;
     [SerializeField] GameObject brickCollectedText;
+    [SerializeField] AudioClip clickButtonSFX;
+
+    AudioSource audioSource;
+
     void Awake()
     {
         DisableRotateBrick();
         DisablePlayerGameObject();
+    }
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void EnableScripts()
@@ -27,6 +36,7 @@ public class PlayGame : MonoBehaviour
         titleScreen.SetActive(false);
         onScreenCountDown.SetActive(true);
         brickCollectedText.SetActive(true);
+        audioSource.PlayOneShot(clickButtonSFX);
     }
 
     public void DisableRotateBrick()
