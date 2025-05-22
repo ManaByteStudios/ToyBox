@@ -7,12 +7,16 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int freeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
     private const float animatorDampTime = 0.1f;
 
+   
+
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter() { }
 
     public override void Tick(float deltaTime)
     {
+        
+
         Vector3 movement = CalculateMovement();
         stateMachine.CharacterController.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
 
