@@ -52,6 +52,12 @@ public class PlayGame : MonoBehaviour
         player.SetActive(false);
     }
 
+    public void ReloadGame()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
+
     public void ExitGame()
     {
         Application.Quit();
