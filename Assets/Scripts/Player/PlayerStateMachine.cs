@@ -18,6 +18,5 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerFreeLookState(this));
 
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
     }
 }

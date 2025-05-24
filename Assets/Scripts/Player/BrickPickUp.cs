@@ -58,12 +58,14 @@ public class BrickPickUp : MonoBehaviour
     }
     void EndGameProcesses()
     {
+        Cursor.lockState = CursorLockMode.None;
         Destroy(this.gameObject);
         EnableEndGameScene();
         DisableOnScreenCountDown();
         DisableBrickCollectedTxt();
         PlayGame.Instance.DisableRotateBrick();
         PlayGame.Instance.DisablePlayerGameObject();
+  
 
     }
 
